@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>User login/logout with datastore</title>
+  </head>
+  <body>
+    {% if user %}
+    {{ welcome }} {{ user.email() }} welcome to the application<br/>
+    Below you will find your details as currently entered into the system<br/>
+    <br/>
+    <br/> To Add and Edit/Update your GPU information <a href="/edit">click here</a><br/>
+    <br/> To Search You GPU <a href="/searchgpu">click here<a> <br/> <br/>
+      <table>
+          <tr>
+              <th >Added Devices</th><br/>
+          </tr>
+          {% if gpu_name_list_query|length > 0 %}
+          <tr>
+              <td>Device Name</td>
+              <td>Compare</td>
+          </tr>
+          <tbody>
+
+          {% for gpunameslist in gpu_name_list_query %}
+
+          <tr>
+              <td>{{ gpunameslist.gpuname }}</a></td>
+              <td >
+                  <form method="GET" action="/comparegpu">
+                      <select name="selected_gpuname_listed">
+                          {% for select_gpu_from_dropdown in gpu_name_list_query %}
+                          {% if select_gpu_from_dropdown.gpuname != gpunameslist.gpuname %}
+                          <option value="{{select_gpu_from_dropdown.gpuname}}" >{{select_gpu_from_dropdown.gpuname}}</option>
+                          {% endif %}
+                          {% endfor %}
+                          <input type="hidden" name="gpuname_listed" value="{{gpunameslist.gpuname}}" />
+                          <input type="submit" value="compare"/>
+                      </select>
+                  </form>
+              </td>
+          </tr>
+
+          {% endfor %}
+          {% else %}
+          <tr>
+              <th>No Drivers Found</th>
+          </tr>
+          {% endif %}
+          </tbody>
+      </table>
+
+    {% else %}
+    <p>Hello guest welcome to the application</p>
+    {% endif %}
+
+    <div style ="color: red">
+      {% if error %}
+      <p>{{ error }}</p>
+      {% endif %}
+    </div>
+
+    <div style ="color: green">
+      {% if success %}
+      <p>{{ success }}</p>
+      {% endif %}
+    </div>
+
+    <p>you can {{ url_string }} <a href='{{ url }}'>here</a></p>
+  </body>
+</html>

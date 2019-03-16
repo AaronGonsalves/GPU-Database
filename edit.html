@@ -1,0 +1,36 @@
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>Add GPU Information</title>
+ </head>
+ <body> Add your information below <br/>
+   <form method="post" action="/edit">
+     GPU Name:<input type="text" name="gpu_name" required="True"/>
+     <br/>
+     GPU Manufacturing:<input type="text" name="gpu_manufacturing" required="True"/>
+     <br/>
+     GPU Date:<input type="date" name="gpu_date" required="True"/>
+     <br/>
+     Please enter the model details below: <br/>
+     Geometry Shader:<input type="checkbox" name="geometryShader" value="geometryShader"/> <br/>
+     Tesselation Shader:<input type="checkbox" name="tesselationShader" value="tesselationShader"/> <br/>
+     Shader Int16:<input type="checkbox" name="shaderInt16" value="shaderInt16"/> <br/>
+     Sparse Binding:<input type="checkbox" name="sparseBinding" value="sparseBinding"/> <br/>
+     Texture Compression ETC2:<input type="checkbox" name="textureCompressionETC2" value="textureCompressionETC2"/> <br/>
+     Vertex Pipeline Stores And Atomics:<input type="checkbox" name="vertexPipelineStoresAndAtomics" value="vertexPipelineStoresAndAtomics"/> <br/>
+     <input type="submit" name="submit" value="Submit"/>
+   </form>
+   <form action="/edit" method="post">
+    <input type="submit" name="button" value="Cancel">
+    <p>below are the GPU name that you will see that are currently stored in the database</p>
+    <p>Please click the GPU name to edit the details</p>
+         {% for gpunameslist in gpu_name_list_query %}
+         {{ loop.index }}
+        ) GPU name: <a href="/updateedit?gpu_name_list_display={{ gpunameslist.key.id() }}"> {{ gpunameslist.gpuname }} </a>
+     <form method="post" action="/edit">
+       <input type="hidden" value="{{ loop.index }}" name="index"/>
+     </form>
+        {% endfor %}
+    </form>
+  </body>
+</html>

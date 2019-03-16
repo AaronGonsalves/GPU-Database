@@ -1,0 +1,77 @@
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>Search GPU Information</title>
+ </head>
+ <body> Enter the Information below <br/>
+   <form method="get" action="/searchgpu">
+     Please enter the model details below to seafch the GPU: <br/>
+
+     Geometry Shader:
+     {% if geometryShader_Search %}
+     <input name="geometryShader_Search" value="geometryShader_Search" type="checkbox" checked/>
+     {% else %}
+     <input name="geometryShader_Search" value="geometryShader_Search" type="checkbox" />
+     {% endif %}
+      <br/>
+
+      Tesselation Shader:
+     {% if tesselationShader_Search %}
+     <input name="tesselationShader_Search" value="tesselationShader_Search" type="checkbox" checked/>
+     {% else %}
+     <input name="tesselationShader_Search" value="tesselationShader_Search" type="checkbox" >
+     {% endif %}
+     <br/>
+
+     Shader Int16:
+     {% if shaderInt16_Search %}
+     <input name="shaderInt16_Search" value="shaderInt16_Search" type="checkbox" checked />
+     {% else %}
+     <input name="shaderInt16_Search" value="shaderInt16_Search" type="checkbox" >
+     {% endif %}
+     <br/>
+
+     Sparse Binding:
+     {% if sparseBinding_Search %}
+     <input name="sparseBinding_Search" value="sparseBinding_Search" type="checkbox" checked/>
+     {% else %}
+     <input name="sparseBinding_Search" value="sparseBinding_Search" type="checkbox" >
+     {% endif %}
+     <br/>
+
+     Texture Compression ETC2:
+     {% if textureCompressionETC2_Search %}
+     <input name="textureCompressionETC2_Search" value="textureCompressionETC2_Search" type="checkbox" checked/>
+     {% else %}
+     <input name="textureCompressionETC2_Search" value="textureCompressionETC2_Search" type="checkbox" />
+     {% endif %}
+     <br/>
+
+     Vertex Pipeline Stores And Atomics:
+     {% if vertexPipelineStoresAndAtomics_Search %}
+     <input name="vertexPipelineStoresAndAtomics_Search" value="vertexPipelineStoresAndAtomics_Search" type="checkbox" checked/>
+     {% else %}
+     <input name="vertexPipelineStoresAndAtomics_Search" value="vertexPipelineStoresAndAtomics_Search" type="checkbox" />
+     {% endif %}
+     <br/>
+     <br/>
+     <input type="submit" name="searchinggpu" value="Search"/>
+
+     <br/>
+     {% if listGPUDetails_query_list|length > 0 or geometryShader_Search or tesselationShader_Search or shaderInt16_Search or sparseBinding_Search or textureCompressionETC2_Search or vertexPipelineStoresAndAtomics_Search%}
+        {% for gpuSearchNamesList in listGPUDetails_query_list %}
+        {{ loop.index }}
+        ) GPU name: {{ gpuSearchNamesList.gpuname }}
+        <form method="post" action="/searchgpu">
+          <input type="hidden" value="{{ loop.index }}" name="index"/>
+        </form>
+      {% endfor %}
+     {% else %}
+      No GPU Name Displayed
+     {% endif %}
+   </form>
+   <form action="/edit" method="post">
+     <input type="submit" name="button" value="Cancel"><br/>
+   </form>
+  </body>
+</html>

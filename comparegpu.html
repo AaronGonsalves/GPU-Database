@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GPU Comparison</title>
+    <style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<table align="center" width="500" height="100" >
+    <tr>
+        <th colspan="6">Comparsion of GPU</th>
+    </tr>
+
+    <tr>
+        <td ><strong>GPU Name</strong></td>
+        {% for gpudetails in gpu_name_list_query %}
+        <td ><strong>{{ gpudetails.gpuname }}</strong></td>
+        {% endfor %}
+    </tr>
+
+    <tr>
+        <td ><strong>GPU Manufacturing</strong></td>
+        {% for gpudetails in gpu_name_list_query %}
+        <td ><strong>{{ gpudetails.gpumanufacturing }}</strong></td>
+        {% endfor %}
+    </tr>
+
+    <tr>
+        <td ><strong>GPU Date</strong></td>
+        {% for gpudetails in gpu_name_list_query %}
+        <td ><strong>{{ gpudetails.gpudate }}</strong></td>
+        {% endfor %}
+    </tr>
+
+    <tr>
+        <td><strong>Geometry Shader</strong></td>
+        {% for gpudetails in gpu_name_list_query %}
+        {% if gpudetails.geometryshader %}
+        <td>{{ gpudetails.geometryshader }}</td>
+        {% else %}
+        <td>{{ gpudetails.geometryshader }}</td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+
+    <tr>
+        <td><strong>Tesselation Shader</strong></td>
+        {% for gpudetails in gpu_name_list_query %}
+        {% if gpudetails.tesselationshader %}
+        <td>{{ gpudetails.tesselationshader }}</td>
+        {% else %}
+        <td>{{ gpudetails.tesselationshader }}</td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+
+    <tr>
+        <td><strong>Shader Int16</strong></td>
+        {% for gpudetails in gpu_name_list_query %}
+        {% if gpudetails.shaderint %}
+        <td>{{ gpudetails.shaderint }}</td>
+        {% else %}
+        <td>{{ gpudetails.shaderint }}</td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+
+    <tr>
+        <td><strong>Sparse Binding</strong></td>
+        {% for gpudetails in gpu_name_list_query %}
+        {% if gpudetails.sparsebinding %}
+        <td>{{ gpudetails.sparsebinding }}</td>
+        {% else %}
+        <td>{{ gpudetails.sparsebinding }}</td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+
+    <tr>
+        <td><strong>Texture Compression ETC2</strong></td>
+        {% for gpudetails in gpu_name_list_query %}
+        {% if gpudetails.texturecompressionetc %}
+        <td>{{ gpudetails.texturecompressionetc }}</td>
+        {% else %}
+        <td>{{ gpudetails.texturecompressionetc }}</td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+
+    <tr>
+        <td><strong>Vertex Pipeline Stores And Atomics</strong></td>
+        {% for gpudetails in gpu_name_list_query %}
+        {% if gpudetails.vertexpipelinestoresandatomics %}
+        <td>{{ gpudetails.vertexpipelinestoresandatomics }}</td>
+        {% else %}
+        <td>{{ gpudetails.vertexpipelinestoresandatomics }}</td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+
+</table>
+<form >
+    <center><input type="submit" value="Back" name="cancel"/></center>
+</form>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>Updating GPU Information</title>
+ </head>
+ <body> Edit the information below <br/>
+   <form method="post" action="/updateedit">
+     GPU Name:<input type="text" name="gpu_name_update" required="True" value="{{ clicked_gpuname_key.gpuname }}" readonly/>
+     <br/>
+     GPU Manufacturing:<input type="text" name="gpu_manufacturing_update" value="{{ clicked_gpuname_key.gpumanufacturing }}" readonly/>
+     <br/>
+     GPU Date:<input type="date" name="gpu_date_update" value="{{ clicked_gpuname_key.gpudate }}" readonly/>
+     <br/>
+       <input type="hidden" value="{{gpu_name_list_display}}" name="gpu_name_list_display"/>
+
+       Please enter the model details below: <br/>
+       Geometry Shader:
+       {% if clicked_gpuname_key.geometryshader %}
+       {{ clicked_gpuname_key.geometryshader }}
+       <!-- <input name="geometryShader_update" type="checkbox" checked/> -->
+       {% else %}
+       {{ clicked_gpuname_key.geometryshader }}
+       <!-- <input name="geometryShader_update" type="checkbox" /> -->
+       {% endif %}
+        <br />
+
+       Tesselation Shader:
+       {% if clicked_gpuname_key.tesselationshader %}
+       {{ clicked_gpuname_key.tesselationshader }}
+       <!-- <input name="tesselationShader_update" type="checkbox" checked/> -->
+       {% else %}
+       {{ clicked_gpuname_key.tesselationshader }}
+       <!-- <input name="tesselationShader_update" type="checkbox" /> -->
+       {% endif %}
+        <br />
+
+        Shader Int16:
+       {% if clicked_gpuname_key.shaderint %}
+       {{ clicked_gpuname_key.shaderint }}
+       <!-- <input name="shaderInt16_update" type="checkbox" checked/> -->
+       {% else %}
+       {{ clicked_gpuname_key.shaderint }}
+       <!-- <input name="shaderInt16_update" type="checkbox" /> -->
+       {% endif %}
+        <br />
+
+        Sparse Binding:
+       {% if clicked_gpuname_key.sparsebinding %}
+       {{ clicked_gpuname_key.sparsebinding }}
+       <!-- <input name="sparseBinding_update" type="checkbox" checked/> -->
+       {% else %}
+       {{ clicked_gpuname_key.sparsebinding }}
+       <!-- <input name="sparseBinding_update" type="checkbox" /> -->
+       {% endif %}
+       <br />
+
+        Texture Compression ETC2:
+       {% if clicked_gpuname_key.texturecompressionetc %}
+       {{ clicked_gpuname_key.texturecompressionetc }}
+       <!-- <input name="textureCompressionETC2_update" type="checkbox" checked/> -->
+       {% else %}
+       {{ clicked_gpuname_key.texturecompressionetc }}
+       <!-- <input name="textureCompressionETC2_update" type="checkbox" /> -->
+       {% endif %}
+       <br />
+
+       Vertex Pipeline Stores And Atomics:
+       {% if clicked_gpuname_key.vertexpipelinestoresandatomics %}
+       {{ clicked_gpuname_key.vertexpipelinestoresandatomics }}
+       <!-- <input name="vertexPipelineStoresAndAtomics_update" type="checkbox" checked/> -->
+       {% else %}
+       {{ clicked_gpuname_key.vertexpipelinestoresandatomics }}
+       <!-- <input name="vertexPipelineStoresAndAtomics_update" type="checkbox" /> -->
+       {% endif %}
+       <br /><br />
+
+       <br/> To edit You GPU <a href="/modifygpu?gpu_name_list_display={{clicked_gpuname_key.gpuname}}">click here<a> <br/> <br/>
+     <!-- <input type="submit" name="update" value="Update"/> -->
+   </form>
+   <form action="/updateedit" method="post">
+    <input type="submit" name="button" value="Cancel">
+    </form>
+  </body>
+</html>
