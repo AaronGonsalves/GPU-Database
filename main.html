@@ -2,18 +2,37 @@
   <head>
     <meta charset="utf-8"/>
     <title>User login/logout with datastore</title>
+    <style>
+    * {
+      font-family: verdana;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 5px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      }</style>
   </head>
-  <body>
+  <body style='font-family="verdana"'><br/>
     {% if user %}
-    {{ welcome }} {{ user.email() }} welcome to the application<br/>
-    Below you will find your details as currently entered into the system<br/>
-    <br/>
-    <br/> To Add and Edit/Update your GPU information <a href="/edit">click here</a><br/>
-    <br/> To Search You GPU <a href="/searchgpu">click here<a> <br/> <br/>
-      <table>
-          <tr>
-              <th >Added Devices</th><br/>
-          </tr>
+    <center>{{ welcome }} {{ user.email() }} </center><br/>
+    <center>Below is the Menu for the GPU System</center><br/>
+
+  <center>  <br/> To Add and Edit/Update your GPU information :
+    <a href="/edit" class="button" >ADD / GPU List / Edit</a><br/></center>
+    <br/> <center>To Search GPU using features : <a href="/searchgpu" class="button">SEARCH GPU<a></center> <br/> <br/>
+    <center>
+      Below are the GPU devices for Comparison  </br></br>
+       <table>
           {% if gpu_name_list_query|length > 0 %}
           <tr>
               <td>Device Name</td>
@@ -34,7 +53,7 @@
                           {% endif %}
                           {% endfor %}
                           <input type="hidden" name="gpuname_listed" value="{{gpunameslist.gpuname}}" />
-                          <input type="submit" value="compare"/>
+                          <td><input class="button" type="submit" value="compare"/></td>
                       </select>
                   </form>
               </td>
@@ -47,24 +66,30 @@
           </tr>
           {% endif %}
           </tbody>
-      </table>
+      </table> <center/>
 
     {% else %}
-    <p>Hello guest welcome to the application</p>
+      <center><p>Hello welcome to the application</p></center>
     {% endif %}
 
-    <div style ="color: red">
+    <center><div style ="color: red">
       {% if error %}
+      <div class="alert alert-success">
+          <strong>Failed!</strong></a>
+      </div>
       <p>{{ error }}</p>
       {% endif %}
-    </div>
+    </div></center>
 
-    <div style ="color: green">
+    <center><div style ="color: green">
       {% if success %}
+      <div class="alert alert-success">
+          <strong>Successfully!</strong></a>
+      </div>
       <p>{{ success }}</p>
       {% endif %}
-    </div>
+    </div></center>
 
-    <p>you can {{ url_string }} <a href='{{ url }}'>here</a></p>
+    <center><p>You can {{ url_string }} : <a href='{{ url }}' class="button">CLICK</a></p></center>
   </body>
 </html>

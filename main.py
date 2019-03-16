@@ -22,14 +22,14 @@ class MainPage(webapp2.RequestHandler):
         self.response.headers['content-Type'] = 'text/html'
         url = ''
         url_string = ''
-        welcome = 'Welcome back'
+        welcome = 'Welcome'
         myuser = None
 
         user = users.get_current_user()
 
         if user:
             url = users.create_logout_url(self.request.uri)
-            url_string = 'logout'
+            url_string = 'Logout'
 
             myuser_key = ndb.Key('MyUser', user.user_id())
             myuser = myuser_key.get()
@@ -40,7 +40,7 @@ class MainPage(webapp2.RequestHandler):
                 myuser.put()
         else:
             url = users.create_login_url(self.request.uri)
-            url_string = 'login'
+            url_string = 'Login'
 
         gpu_name_list_compare_query = MyGPUDatabase().query().fetch()
 

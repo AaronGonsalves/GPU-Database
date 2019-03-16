@@ -2,35 +2,54 @@
  <head>
    <meta charset="utf-8">
    <title>Add GPU Information</title>
- </head>
- <body> Add your information below <br/>
+   <style>
+   * {
+     font-family: verdana;
+   }
+   .button {
+     background-color: #4CAF50;
+     border: none;
+     color: white;
+     padding: 5px 15px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor: pointer;
+     }</style>
+ </head></br>
+ <center><strong><body style='font-family="verdana"'> Add your information below <br/></strong></center></br>
+
    <form method="post" action="/edit">
-     GPU Name:<input type="text" name="gpu_name" required="True"/>
-     <br/>
-     GPU Manufacturing:<input type="text" name="gpu_manufacturing" required="True"/>
-     <br/>
-     GPU Date:<input type="date" name="gpu_date" required="True"/>
-     <br/>
-     Please enter the model details below: <br/>
-     Geometry Shader:<input type="checkbox" name="geometryShader" value="geometryShader"/> <br/>
-     Tesselation Shader:<input type="checkbox" name="tesselationShader" value="tesselationShader"/> <br/>
-     Shader Int16:<input type="checkbox" name="shaderInt16" value="shaderInt16"/> <br/>
-     Sparse Binding:<input type="checkbox" name="sparseBinding" value="sparseBinding"/> <br/>
-     Texture Compression ETC2:<input type="checkbox" name="textureCompressionETC2" value="textureCompressionETC2"/> <br/>
-     Vertex Pipeline Stores And Atomics:<input type="checkbox" name="vertexPipelineStoresAndAtomics" value="vertexPipelineStoresAndAtomics"/> <br/>
-     <input type="submit" name="submit" value="Submit"/>
+     <center>
+       <table cellspacing="10"><tr>
+         <td>GPU Name:</td><td><input type="text" name="gpu_name" required="True"/></td></tr>
+     <tr><td>GPU Manufacturing:</td><td><input type="text" name="gpu_manufacturing" required="True"/><td></tr>
+     <tr><td>GPU Date:</td><td><input type="date" name="gpu_date" required="True"/></td></tr></table></center>
+   </br> <strong><center>Please select the features of the GPU : <br/></strong><br/>
+     <table cellspacing="10"><tr>
+       <td>Geometry Shader:</td><td><input type="checkbox" name="geometryShader" value="geometryShader"/> </td>
+     <tr><td>Tesselation Shader:</td><td><input type="checkbox" name="tesselationShader" value="tesselationShader"/> </td></tr>
+     <tr><td>Shader Int16:</td><td><input type="checkbox" name="shaderInt16" value="shaderInt16"/> </td></tr>
+     <tr><td>Sparse Binding:</td><td><input type="checkbox" name="sparseBinding" value="sparseBinding"/> </td></tr>
+     <tr><td>Texture Compression ETC2:</td><td><input type="checkbox" name="textureCompressionETC2" value="textureCompressionETC2"/> </td></tr>
+     <tr><td>Vertex Pipeline Stores And Atomics:</td><td><input type="checkbox" name="vertexPipelineStoresAndAtomics" value="vertexPipelineStoresAndAtomics"/> </td></tr>
+   </table>
+     <input class="button" type="submit" name="submit" value="Submit"/></center>
    </form>
    <form action="/edit" method="post">
-    <input type="submit" name="button" value="Cancel">
-    <p>below are the GPU name that you will see that are currently stored in the database</p>
-    <p>Please click the GPU name to edit the details</p>
+    <center><input class="button" type="submit" name="button" value="Cancel">
+    <p>Below are the GPU name that you will see that are currently stored in the database</p>
+    <p>Please click the GPU name to view and edit the details</p>
          {% for gpunameslist in gpu_name_list_query %}
          {{ loop.index }}
-        ) GPU name: <a href="/updateedit?gpu_name_list_display={{ gpunameslist.key.id() }}"> {{ gpunameslist.gpuname }} </a>
+        ) GPU name: <a href="/updateedit?gpu_name_list_display={{ gpunameslist.key.id() }}"> {{ gpunameslist.gpuname }} </a><br>
      <form method="post" action="/edit">
        <input type="hidden" value="{{ loop.index }}" name="index"/>
      </form>
         {% endfor %}
+        </center>
     </form>
   </body>
 </html>

@@ -16,6 +16,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Edit(webapp2.RequestHandler):
     def get(self):
         self.response.headers['content-Type'] = 'text/html'
+
         user = users.get_current_user()
         myuser_key = ndb.Key('MyUser', user.user_id())
         myuser = myuser_key.get()
@@ -32,6 +33,7 @@ class Edit(webapp2.RequestHandler):
 
     def post(self):
         self.response.headers['content-Type'] = 'text/html'
+        url_string = ''
 
         if self.request.get('submit') == 'Submit':
 
@@ -54,7 +56,6 @@ class Edit(webapp2.RequestHandler):
             mykey = ndb.Key('MyGPUDatabase',new_gpu_key_storing.gpuname)
             getmyuser = mykey.get()
 
-            # if action == 'Submit':
             if getmyuser == None:
                 gpu_data_store = MyGPUDatabase(id=new_gpu_key_storing.gpuname, gpuname=new_gpu_key_storing.gpuname,
                 gpumanufacturing=new_gpu_key_storing.gpumanufacturing, gpudate=new_gpu_key_storing.gpudate,
@@ -64,32 +65,19 @@ class Edit(webapp2.RequestHandler):
                 vertexpipelinestoresandatomics=new_gpu_key_storing.vertexpipelinestoresandatomics)
 
                 gpu_data_store.put()
-                # self.redirect('/')
+
                 template_values = {
-                    # 'error' : 'GPU already exist in the system'
-                    'success' : 'GPU Details added successfully'
+                    'success' : 'GPU Details added to the system',
                 }
                 template = JINJA_ENVIRONMENT.get_template('main.html')
                 self.response.write(template.render(template_values))
-                    # template_values = {
-                    #     # 'error' : 'GPU already exist in the system',
-                    #     'success' : 'GPU Details added successfully'
-                    # }
-                    # template = JINJA_ENVIRONMENT.get_template('main.html')
-                    # self.response.write(template.render(template_values))
 
             else:
                 template_values = {
-                    'error' : 'GPU already exist in the system'
-                    # 'success' : 'GPU Details added successfully'
+                    'error' : 'GPU already exist in the system',
                 }
                 template = JINJA_ENVIRONMENT.get_template('main.html')
                 self.response.write(template.render(template_values))
-
-
-
-        # if self.request.get('submit') == 'Submit':
-        # self.redirect('/edit')
 
         if self.request.get('button') == 'Cancel':
             self.redirect('/')
