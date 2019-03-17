@@ -67,14 +67,14 @@ class Edit(webapp2.RequestHandler):
                 gpu_data_store.put()
 
                 template_values = {
-                    'success' : 'GPU Details added to the system',
+                    'success' : 'GPU Details added to the system'
                 }
                 template = JINJA_ENVIRONMENT.get_template('main.html')
                 self.response.write(template.render(template_values))
 
             else:
                 template_values = {
-                    'error' : 'GPU already exist in the system',
+                    'error' : 'GPU already exist in the system'
                 }
                 template = JINJA_ENVIRONMENT.get_template('main.html')
                 self.response.write(template.render(template_values))
